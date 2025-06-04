@@ -10,11 +10,10 @@ const App = () => {
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
-            <li><Link to="/login">登录</Link></li>  {/* 这里修改为/login */}
+            <li><Link to="/login">登录</Link></li>
             <li><Link to="/">图书管理</Link></li>
             <li><Link to="/catalog">图书目录</Link></li>
             <li><Link to="/records">借阅记录</Link></li>
-           
           
           </ul>
         </div>

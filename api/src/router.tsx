@@ -6,6 +6,7 @@ import BorrowRecords from './pages/BorrowRecords';
 import Login from './pages/Login';
 import { AuthGuard } from './components/AuthGuard';
 
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -24,6 +25,8 @@ export const router = createBrowserRouter([
         path: '/records',
         element: <AuthGuard><BorrowRecords /></AuthGuard>,
       },
+    
+    
     ],
   },
 ]);
