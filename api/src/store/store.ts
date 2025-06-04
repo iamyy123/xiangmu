@@ -1,24 +1,30 @@
-import { create } from 'zustand';
-import { Pokemon } from '../services/api';
 
-interface TrainerState {
-  name: string;
-  collectedPokemon: Pokemon[];
-  setName: (name: string) => void;
-  addPokemon: (pokemon: Pokemon) => void;
-  removePokemon: (pokemonId: number) => void;
+
+import { create } from 'zustand';
+import { Book, User } from '../services/api';
+
+interface LibraryState {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  librarian: string;
+  borrowedBooks: Book[];
+  setLibrarian: (name: string) => void;
+  borrowBook: (book: Book) => void;
+  returnBook: (bookId: number) => void;
 }
 
-export const useTrainerStore = create<TrainerState>((set) => ({
-  name: '小智',
-  collectedPokemon: [],
-  setName: (name) => set({ name }),
-  addPokemon: (pokemon) =>
+export const useLibraryStore = create<LibraryState>((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
+  librarian: '管理员',
+  borrowedBooks: [],
+  setLibrarian: (name) => set({ librarian: name }),
+  borrowBook: (book) =>
     set((state) => ({
-      collectedPokemon: [...state.collectedPokemon, pokemon],
+      borrowedBooks: [...state.borrowedBooks, book],
     })),
-  removePokemon: (pokemonId) =>
+  returnBook: (bookId) =>
     set((state) => ({
-      collectedPokemon: state.collectedPokemon.filter((p) => p.id !== pokemonId),
+      borrowedBooks: state.borrowedBooks.filter((b) => b.id !== bookId),
     })),
 }));
